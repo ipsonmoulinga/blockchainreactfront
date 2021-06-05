@@ -3,7 +3,7 @@ export interface Block {
     id: string;
     pendingTransactions:Transaction[];
   }
-  export interface BlockChain{
+  export default interface BlockChain{
     chain: Block[];
     transactions: Transaction[];
     miningReward: number;

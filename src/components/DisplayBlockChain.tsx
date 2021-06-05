@@ -1,25 +1,26 @@
-/* eslint-disable no-undef */
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable no-shadow */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const DisplayBlockChain = () => {
-  const [chain, setChain] = useState([]);
+  const [blockchain, setBlock] = useState([]);
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/setPhotos').then((response) => {
-      const chaine = response.data;
-      setChain(chaine);
+    axios.get('https://msi6bpn676.execute-api.eu-west-3.amazonaws.com/dev/chain').then((response) => {
+      const block = response.data;
+      setBlock(block);
     });
   }, []);
 
   return (
     <div>
+      <p>
+        DisplayBlockChain.tsx:
+      </p>
       <ul>
-        {chain.map((bloc, index) => (
+        {blockchain.map((bloc, index) => (
           <li key={index}>
-            bloc N°: {index} = {bloc}
+            bloc N° {index + 1} = {JSON.stringify(bloc)}
           </li>
         ))}
       </ul>
