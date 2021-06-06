@@ -7,6 +7,7 @@ import DisplayBlockChain from './DisplayBlockChain';
 function App() {
   return (
     <div>
+      Hello world !
       <DisplayBlockChain />
     </div>
   );

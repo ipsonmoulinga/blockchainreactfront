@@ -12,7 +12,6 @@ export const DisplayBlokChain = () => {
     chain: [], transactions: [], miningReward: 0, difficulty: 0,
   };
   const [blockchain, setBlockChain] = useState<BlockChain>(emptyBlockChain);
-
   const setBlockChainIntoTheState = async () => {
     const response = await getBlockChain();
     setBlockChain(response);
