@@ -1,31 +1,46 @@
-/* eslint-disable no-shadow */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import BlockChain from './Model';
+import { getBlockChain } from '../service/api';
+import { DisplayOneBlock } from './DisplayOneBlock';
+import { DisplayTransaction } from './DisplayTransaction';
 
-const DisplayBlockChain = () => {
-  const [blockchain, setBlock] = useState([]);
+export const DisplayBlokChain = () => {
+  const emptyBlockChain:BlockChain = {
+    chain: [], transactions: [], miningReward: 0, difficulty: 0,
+  };
+  const [blockchain, setBlockChain] = useState<BlockChain>(emptyBlockChain);
 
+  const setBlockChainIntoTheState = async () => {
+    const response = await getBlockChain();
+    setBlockChain(response);
+  };
   useEffect(() => {
-    axios.get('https://msi6bpn676.execute-api.eu-west-3.amazonaws.com/dev/chain').then((response) => {
-      const block = response.data;
-      setBlock(block);
-    });
+    setBlockChainIntoTheState();
   }, []);
 
   return (
-    <div>
-      <p>
-        DisplayBlockChain.tsx:
-      </p>
-      <ul>
-        {blockchain.map((bloc, index) => (
-          <li key={index}>
-            bloc N° {index + 1} = {JSON.stringify(bloc)}
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div>
+        <p> Blockchain with a mining difficulty of {blockchain.difficulty} and a mining reward of {blockchain.miningReward}.</p>
+        <p>
+          Blocks :
+        </p>
+        <div>
+            {blockchain.chain.map((block, index) => (
+            <li key={index}>Block N°{index + 1} <DisplayOneBlock BlockToDisplay={block}/></li>))}
+         </div>
+        <p>
+          Achieved transactions :
+        </p>
+        <div>
+            {blockchain.transactions.map((transaction, index) => (
+            <li key={index}>Transaction N°{index + 1}
+              <DisplayTransaction TransactionToDisplay={transaction}/>
+            </li>))}
+         </div>
+      </div>
   );
 };
-
-export default DisplayBlockChain;
+export default DisplayBlokChain;
