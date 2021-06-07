@@ -2,10 +2,10 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import BlockChain from '../components/Model';
+import IblockChain from '../components/Model';
 
-export const getBlockChain = async () :Promise<BlockChain> => {
-  const emptyBlockChain :BlockChain = {
+export const getBlockChain = async () :Promise<IblockChain> => {
+  const emptyBlockChain :IblockChain = {
     chain: [],
     transactions: [],
     miningReward: 0,

@@ -1,18 +1,18 @@
-export interface Block {
+export interface Iblock {
     previousId?: string;
     id: string;
-    pendingTransactions:Transaction[];
+    pendingTransactions:Itransaction[];
   }
-  export default interface BlockChain{
-    chain: Block[];
-    transactions: Transaction[];
+  export default interface IblockChain{
+    chain: Iblock[];
+    transactions: Itransaction[];
     miningReward: number;
     difficulty: number;
   }
-  export interface Transaction {
+  export interface Itransaction {
     amount:number;
-    sender: User;
-    receiver: User;
+    sender: Iuser;
+    receiver: Iuser;
     status: StatusType;
   }
 export enum StatusType {
@@ -21,7 +21,7 @@ export enum StatusType {
   'failed',
 }
 
-export interface User {
+export interface Iuser {
     privateKey:string;
     publicKey:string;
 }

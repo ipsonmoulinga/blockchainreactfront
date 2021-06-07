@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable import/prefer-default-export */
-import React from 'react';
-import { Transaction } from './Model';
+/* eslint-disable no-undef */
+import React, { ReactElement } from 'react';
+import { Itransaction } from './Model';
 
-export const DisplayTransaction = (props:{TransactionToDisplay: Transaction}) => (
+const Transaction = (
+  props:{TransactionToDisplay: Itransaction},
+) : ReactElement => (
     <ul>
         <li> Status of transaction:
             {(props.TransactionToDisplay.status === 1) ? ' Pending' : ' Achieved'}
@@ -19,3 +20,4 @@ export const DisplayTransaction = (props:{TransactionToDisplay: Transaction}) =>
         </li>
     </ul>
 );
+export default Transaction;
