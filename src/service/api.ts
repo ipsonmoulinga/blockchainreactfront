@@ -1,5 +1,5 @@
 import axios from 'axios';
-import IblockChain from '../components/Model';
+import IblockChain from '../model/BlockChain';
 
 const getBlockChain = async () :Promise<IblockChain> => {
   const emptyBlockChain :IblockChain = {

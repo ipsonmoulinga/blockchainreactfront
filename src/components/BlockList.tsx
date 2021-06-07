@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
+import { Iblock } from '../model/BlockChain';
 import Block from './Block';
-import { Iblock } from './Model';
 
 const BlockList = (props:{blocklist : Iblock[]}) : ReactElement => (
 <ul>

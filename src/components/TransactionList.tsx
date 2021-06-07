@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Itransaction } from './Model';
+import { Itransaction } from '../model/BlockChain';
 import Transaction from './Transaction';
 
 const TransactionList = (props:{transactionList: Itransaction[]}) : ReactElement => (

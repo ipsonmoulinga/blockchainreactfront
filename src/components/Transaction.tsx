@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React, { ReactElement } from 'react';
-import { Itransaction } from './Model';
+import { Itransaction } from '../model/BlockChain';
 
 const Transaction = (
   props:{TransactionToDisplay: Itransaction},

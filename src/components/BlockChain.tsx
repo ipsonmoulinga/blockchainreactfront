@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react';
+import IblockChain from '../model/BlockChain';
 import getBlockChain from '../service/api';
 import BlockList from './BlockList';
-import IblockChain from './Model';
 import TransactionList from './TransactionList';
 
 export const DisplayBlokChain = () : ReactElement => {
