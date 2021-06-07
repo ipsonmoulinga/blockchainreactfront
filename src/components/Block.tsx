@@ -7,7 +7,7 @@ const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (
         {/* if previous id display it, else print genesis block  */}
         {props.BlockToDisplay.previousId
           ? <li> id of previous block : {props.BlockToDisplay.previousId}</li>
-          : <li>Genesis block</li>}
+          : <li>Genesis block (No previous Id)</li>}
           {/* display id  */}
           <li> id : {props.BlockToDisplay.id} </li>
            {/* display pending transactions  */}
