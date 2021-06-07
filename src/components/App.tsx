@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import '../style/App.css';
-import DisplayBlockChain from './BlockChain';
+import BlockChain from './BlockChain';
 
 function App() : ReactElement {
   return (
     <div>
-      <DisplayBlockChain />
+      <BlockChain />
     </div>
   );
 }
