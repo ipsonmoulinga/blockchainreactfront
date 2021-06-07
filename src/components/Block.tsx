@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Iblock } from './Model';
+import { Iblock } from '../model/BlockChain';
 import TransactionList from './TransactionList';
 
 const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (

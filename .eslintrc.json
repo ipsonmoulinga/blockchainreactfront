@@ -19,6 +19,14 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-console": "off",
+        "no-restricted-syntax": [
+          "error",
+          {
+              "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(warn|error|info|trace)$/]",
+              "message": "Unexpected property on console object was called"
+          }
+      ],
         "semi": [2, "always"],
         "import/no-unresolved": "error",
         "no-use-before-define": "off",

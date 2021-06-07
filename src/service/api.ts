@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable no-console */
-/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import IblockChain from '../components/Model';
 
-export const getBlockChain = async () :Promise<IblockChain> => {
+const getBlockChain = async () :Promise<IblockChain> => {
   const emptyBlockChain :IblockChain = {
     chain: [],
     transactions: [],
@@ -19,3 +16,4 @@ export const getBlockChain = async () :Promise<IblockChain> => {
     return emptyBlockChain;
   }
 };
+export default getBlockChain;

@@ -1,4 +1,4 @@
-import { getBlockChain } from './api';
+import getBlockChain from './api';
 
 describe('getBlockChain', () => {
   it('should returns a blockchain ', async () => {

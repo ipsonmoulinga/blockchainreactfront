@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { getBlockChain } from '../service/api';
+import getBlockChain from '../service/api';
 import BlockList from './BlockList';
 import IblockChain from './Model';
 import TransactionList from './TransactionList';
