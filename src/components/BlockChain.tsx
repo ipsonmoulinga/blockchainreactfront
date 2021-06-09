@@ -3,8 +3,9 @@ import IblockChain from '../model/BlockChain';
 import getBlockChain from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';
+import '../style/BlockChain.css';
 
-export const BlokChain = () : ReactElement => {
+export const BlockChain = () : ReactElement => {
   const emptyBlockChain:IblockChain = {
     chain: [], transactions: [], miningReward: 0, difficulty: 0,
   };
@@ -18,24 +19,22 @@ export const BlokChain = () : ReactElement => {
   }, []);
 
   return (
-      <div>
-        <p>
-          Mining difficulty: {blockchain.difficulty}.
-        </p>
-        <p>
+      <ul id="blockchain">
+        <li>
+        Mining difficulty: {blockchain.difficulty}.
+        </li>
+        <li>
           Mining reward: {blockchain.miningReward}.
-        </p>
-        <p>
+        </li>
+        <li>
           Blocks :
-        </p>
-        <div>
-            <BlockList blocklist={blockchain.chain} />
-         </div>
-        <p>
+          <BlockList blocklist={blockchain.chain} />
+        </li>
+        <li>
           Achieved transactions :
-        </p>
           <TransactionList transactionList={blockchain.transactions} />
-      </div>
+        </li>
+      </ul>
   );
 };
 export default BlokChain;
