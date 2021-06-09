@@ -12,31 +12,3 @@
     height:10%;
     margin-bottom: 5%;
 }
-.submitOrChangePassWord button{
-    width:50%;
-    border:none;
-    background-color:transparent;
-    font-size: 80%;
-}
-.submitOrChangePassWord button:first-of-type{
-    background-color:gray;
-    color:white;
-    opacity: 70%;
-}
-.submitOrChangePassWord button:first-of-type:hover{
-    color:gray;
-    border:solid;
-    border-color: gray;
-    opacity: 70%;
-    background-color:transparent;
-}
-.submitOrChangePassWord button:last-of-type{    
-    color:gray;
-}
-.submitOrChangePassWord button:last-of-type:hover{    
-    color:white;
-    background-color: gray;
-    opacity:70%;
-    border:solid;
-    border-color: white;
-}
