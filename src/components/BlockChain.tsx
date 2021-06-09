@@ -4,7 +4,7 @@ import getBlockChain from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';
 
-export const DisplayBlokChain = () : ReactElement => {
+export const BlokChain = () : ReactElement => {
   const emptyBlockChain:IblockChain = {
     chain: [], transactions: [], miningReward: 0, difficulty: 0,
   };
@@ -38,4 +38,4 @@ export const DisplayBlokChain = () : ReactElement => {
       </div>
   );
 };
-export default DisplayBlokChain;
+export default BlokChain;
