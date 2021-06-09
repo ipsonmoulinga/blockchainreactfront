@@ -37,4 +37,4 @@ export const BlockChain = () : ReactElement => {
       </ul>
   );
 };
-export default BlokChain;
+export default BlockChain;
