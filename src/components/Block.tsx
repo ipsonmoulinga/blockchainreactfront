@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react';
+import { Card } from '@material-ui/core';
 import { Iblock } from '../model/BlockChain';
 import TransactionList from './TransactionList';
 import '../style/Block.css';
 
 const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (
-    <ul id="bloc">
+    <Card variant="outlined">
       <li>Details
         <ul>
         {/* if previous id display it, else print genesis block  */}
@@ -21,6 +22,6 @@ const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (
              : (<li> No pending transactions !</li>)}
         </ul>
       </li>
-    </ul>
+    </Card>
 );
 export default Block;
