@@ -1,27 +1,28 @@
 import React, { ReactElement } from 'react';
+import { Card, Typography } from '@material-ui/core';
 import { Itransaction } from '../model/BlockChain';
 import '../style/Transaction.css';
 
 const Transaction = (
   props:{TransactionToDisplay: Itransaction},
 ) : ReactElement => (
-    <ul id="menu-accordeon-transaction">
-      <li> details
-        <ul>
-          <li> Status of transaction:
+    <Card id="menu-accordeon-transaction">
+      <div>
+        <div>
+          <Typography> Status of transaction:
               {(props.TransactionToDisplay.status === 1) ? ' Pending' : ' Achieved'}
-          </li>
-          <li> Amount : {props.TransactionToDisplay.amount}</li>
-          <li> Sender: {(props.TransactionToDisplay.sender)
+          </Typography>
+          <Typography> Amount : {props.TransactionToDisplay.amount}</Typography>
+          <Typography> Sender: {(props.TransactionToDisplay.sender)
             ? props.TransactionToDisplay.sender.privateKey
             : 'None'}
-          </li>
-          <li> Receiver: {(props.TransactionToDisplay.receiver)
+          </Typography>
+          <Typography> Receiver: {(props.TransactionToDisplay.receiver)
             ? props.TransactionToDisplay.receiver.privateKey
             : 'Noner'}
-          </li>
-        </ul>
-      </li>
-    </ul>
+          </Typography>
+        </div>
+      </div>
+    </Card>
 );
 export default Transaction;

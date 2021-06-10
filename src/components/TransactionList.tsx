@@ -1,14 +1,17 @@
 import React, { ReactElement } from 'react';
+import {
+  ListItem, Card,
+} from '@material-ui/core';
 import { Itransaction } from '../model/BlockChain';
 import Transaction from './Transaction';
 import '../style/TransactionList.css';
 
 const TransactionList = (props:{transactionList: Itransaction[]}) : ReactElement => (
-    <ul className="ultrlist">
+    <ListItem className="ultrlist">
         {props.transactionList.map((transaction, index) => (
-        <li key={index}>Transaction N°{index + 1}
+        <Card key={index}>Transaction N°{index + 1}
             <Transaction TransactionToDisplay={transaction} />
-        </li>))}
-    </ul>
+        </Card>))}
+    </ListItem>
 );
 export default TransactionList;

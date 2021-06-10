@@ -1,27 +1,28 @@
 import React, { ReactElement } from 'react';
-import { Card } from '@material-ui/core';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import { Iblock } from '../model/BlockChain';
 import TransactionList from './TransactionList';
 import '../style/Block.css';
 
-const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (
-    <Card variant="outlined">
-      <li>Details
-        <ul>
+const Block = (props:{BlockToDisplay: Iblock}): ReactElement => (
+    <Card className="box">
+      <CardContent>
+      <Typography variant="h5" component="h2" className="text-center">Details </Typography>
+        <div>
         {/* if previous id display it, else print genesis block  */}
         {props.BlockToDisplay.previousId
-          ? <li> id of previous block : {props.BlockToDisplay.previousId}</li>
-          : <li>Genesis block (No previous Id)</li>}
+          ? <Typography color="textSecondary"> id of previous block : {props.BlockToDisplay.previousId}</Typography>
+          : <Typography color="textSecondary">Genesis block (No previous Id)</Typography>}
           {/* display id  */}
-          <li> id : {props.BlockToDisplay.id} </li>
+          <Typography> id : {props.BlockToDisplay.id} </Typography>
            {/* display pending transactions  */}
            {(props.BlockToDisplay.pendingTransactions.length > 0)
-             ? (<li> PendingTransactions :
+             ? (<Typography> PendingTransactions :
                   <TransactionList transactionList={props.BlockToDisplay.pendingTransactions} />
-            </li>)
-             : (<li> No pending transactions !</li>)}
-        </ul>
-      </li>
+            </Typography>)
+             : (<Typography> No pending transactions !</Typography>)}
+        </div>
+      </CardContent>
     </Card>
 );
 export default Block;
