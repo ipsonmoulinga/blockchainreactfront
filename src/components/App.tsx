@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router, Link, Route, Switch,
 } from 'react-router-dom';
 import BlockChain from './BlockChain';
-import SignIn from './Login/SignIn';
-import SignUp from './Login/SignUp';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 function Home() {
   return (
@@ -64,12 +64,8 @@ function App() : ReactElement {
         <Route path="/blockchain">
           <BlockChain />
         </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/signin">
-          <SignIn />
-        </Route>
+        <Route path="/signup" component={SignUp} />
+        <Route path="/signin" component={SignIn}/>
       </Switch>
     </div>
   </Router>

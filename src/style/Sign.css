@@ -8,7 +8,7 @@
     max-width: 3500px;
     max-height: 3500px;
     height: 100%;    
-    background: url("./IOSBackGround22.jpeg") no-repeat  center  center;
+    background: url("../assets/backgroundImage.png") no-repeat  center  center;
     background-size:cover;
 
 }
@@ -68,13 +68,21 @@
     color:gray;
 }
 /********************************/
-#my-input{
-    font-size:70%;
-}
-#password-input{
-    font-size:70%;
-}
 #signinButton{
     background-color:gray;
     color:rgb(236, 236, 236);
+}
+/***************************************/
+#registerOrLoginLinkContainer{
+    margin-top: 1%;
+    font-size: larger;
+    color:gray;
+    background-color: rgb(236, 236, 236);
+    opacity:80%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:10%;
+    width:40%;
+    border-radius: 0 0 30% 30% ;
 }

@@ -1,14 +1,15 @@
 import {
-  Grid, Avatar, Button, makeStyles, Link, TextField, IconButton, withStyles,
+  Grid, Avatar, Button, makeStyles, TextField, IconButton, withStyles,
 } from '@material-ui/core';
-import './Sign.css';
-import './SignUp.css';
+import '../style/Sign.css';
+import '../style/SignUp.css';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import React, { ReactElement, useState } from 'react';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import { Link } from 'react-router-dom';
 
 const CssTextField = withStyles({
   root: {
@@ -105,8 +106,8 @@ const SignUp = () : ReactElement => {
                   <Button id="signupButton" type="submit">Sign up</Button>
                 </Grid>
             </Grid>
-            <Grid id="registerInLoginLinkContainer">
-              <Link to='/signup'>Login</Link>
+            <Grid id="registerOrLoginLinkContainer">
+              <Link to="/signin">Login</Link>
             </Grid>
           </Grid>
   );
