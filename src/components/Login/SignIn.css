@@ -1,0 +1,40 @@
+/********************************/
+.submissionOrChangePassword{
+    background-color:transparent;
+    width: 80%;
+    max-height: 10%;
+    display: flex;
+    justify-content:space-between;
+}
+.submissionOrChangePassword Button{
+    background-color:transparent(200, 255, 0);
+    width:50%;
+    font-size: 70%;
+    color:gray;
+    font-weight: bold;
+}
+/***************************************/
+#registerInLoginLinkContainer{
+    margin-top: 1%;
+    font-size: larger;
+    color:gray;
+    background-color: rgb(236, 236, 236);
+    opacity:80%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:10%;
+    width:40%;
+    border-radius: 0 0 30% 30% ;
+}
+/********************************/
+#my-input{
+    font-size:70%;
+}
+#password-input{
+    font-size:70%;
+}
+#signinButton{
+    background-color:gray;
+    color:rgb(236, 236, 236);
+}

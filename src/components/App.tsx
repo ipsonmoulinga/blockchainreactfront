@@ -4,9 +4,9 @@ import {
   BrowserRouter as Router, Link, Route, Switch,
 } from 'react-router-dom';
 import BlockChain from './BlockChain';
-import Register from './Login/Register';
-import Login from './Login/Login';
-// import Login from './Login/Login';
+import SignIn from './Login/SignIn';
+import SignUp from './Login/SignUp';
+
 function Home() {
   return (
     <div>
@@ -28,11 +28,10 @@ function About() {
     </div>
   );
 }
-
 function App() : ReactElement {
   return (
+  <div id="App-Body">
     <Router>
-    <div>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -41,28 +40,18 @@ function App() : ReactElement {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/login">login</Link>
-        </li>
-        <li>
-          <Link to="/Register">Register</Link>
-        </li>
-        <li>
           <Link to="/blockchain">blockchain</Link>
+        </li>
+        <li>
+          <Link to="/signup">Sign-up Form</Link>
+        </li>
+        <li>
+          <Link to="/signin">Sign-in Form</Link>
         </li>
       </ul>
       <hr />
-
-      {/*
-        A <Switch> looks through all its children <Route>
-        elements and renders the first one whose path
-        matches the current URL. Use a <Switch> any time
-        you have multiple routes, but you want only one
-        of them to render at a time
-      */}
-      <Switch>
+    <div className='secondContainer'>
+      <Switch >
         <Route exact path="/">
           <Home />
         </Route>
@@ -72,18 +61,19 @@ function App() : ReactElement {
         <Route path="/dashboard">
           <Dashboard />
         </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
         <Route path="/blockchain">
           <BlockChain />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/signin">
+          <SignIn />
         </Route>
       </Switch>
     </div>
   </Router>
+  </div>
   );
 }
 
