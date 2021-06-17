@@ -1,4 +1,6 @@
-export interface Iblock {
+import { ReactElement } from "react";
+
+  export interface Iblock {
     previousId?: string;
     id: string;
     pendingTransactions:Itransaction[];
