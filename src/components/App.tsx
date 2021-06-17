@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import React, { ReactElement } from 'react';
 import '../style/App.css';
 import {
