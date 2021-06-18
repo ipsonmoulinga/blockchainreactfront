@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import IblockChain from '../model/BlockChain';
-import getBlockChain from '../service/api';
+import getBlockChain, { mineBlockChain } from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';
 
@@ -13,12 +13,17 @@ export const DisplayBlokChain = () : ReactElement => {
     const response = await getBlockChain();
     setBlockChain(response);
   };
+  const setMinedBlockChainIntoTheState = async () => {
+    const response = await mineBlockChain(blockchain);
+    setBlockChain(response);
+  };
   useEffect(() => {
     setBlockChainIntoTheState();
   }, []);
 
   return (
       <div>
+        <button onClick={setMinedBlockChainIntoTheState}> MineBlockChain </button>
         <p>
           Mining difficulty: {blockchain.difficulty}.
         </p>
