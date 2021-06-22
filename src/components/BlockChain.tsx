@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import { Card, Grid, Typography } from '@material-ui/core';
 import IblockChain from '../model/BlockChain';
-import getBlockChain from '../service/api';
+import getBlockChain, { mineBlockChain } from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';
 
@@ -24,12 +24,16 @@ export const BlockChain = () : ReactElement => {
     const response = await getBlockChain();
     setBlockChain(response);
   };
+  const setMinedBlockChainIntoTheState = async () => {
+    const response = await mineBlockChain(blockchain);
+    setBlockChain(response);
+  };
   useEffect(() => {
     setBlockChainIntoTheState();
   }, []);
-
   return (
     <Grid style={gridContainerStyle}>
+      <button onClick={setMinedBlockChainIntoTheState}> MineBlockChain </button>
       <Card style={cardStyle}>
         <Typography><h3>Mining difficulty: {blockchain.difficulty}.</h3><br/></Typography>
       </Card>
