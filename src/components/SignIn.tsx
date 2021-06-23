@@ -1,5 +1,5 @@
 import {
-  Grid, Avatar, Button, makeStyles, TextField, IconButton, withStyles,
+  Grid, Avatar, Button, makeStyles, TextField, IconButton, withStyles, Card,
 } from '@material-ui/core';
 import '../style/Sign.css';
 import '../style/SignIn.css';
@@ -44,7 +44,8 @@ const SignIn = () : ReactElement => {
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   return (
         <Grid id="sign-wrapper">
-            <Grid id="formContainer">
+            <Card id="formContainer">
+            <form className='loginRegisterForm'>
                 <Grid className="avatarContainer">
                   <Avatar className={classes.large}>
                       <PersonRoundedIcon id='avatarIcon' />
@@ -92,10 +93,11 @@ const SignIn = () : ReactElement => {
                   <Button id="signinButton"type="submit">Sign in</Button>
                   <Button>Password?</Button>
                 </Grid>
-            </Grid>
-            <Grid id="registerOrLoginLinkContainer">
+                </form>
+            </Card>
+            <Card id="registerOrLoginLinkContainer">
               <Link to='/signup'>Register</Link>
-            </Grid>
+            </Card>
         </Grid>
   );
 };
