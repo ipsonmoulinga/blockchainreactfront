@@ -6,28 +6,10 @@ import {
 import BlockChain from './BlockChain';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import Home from './Home';
+import About from './About';
+import Dashboard from './Dashboard';
 
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
 function App() : ReactElement {
   return (
   <div id="App-Body">
@@ -38,6 +20,9 @@ function App() : ReactElement {
         </li>
         <li>
           <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li>
           <Link to="/blockchain">blockchain</Link>
@@ -52,18 +37,10 @@ function App() : ReactElement {
       <hr />
     <div className='secondContainer'>
       <Switch >
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route path="/blockchain">
-          <BlockChain />
-        </Route>
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/blockchain" component={BlockChain}/>
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn}/>
       </Switch>
@@ -72,8 +49,4 @@ function App() : ReactElement {
   </div>
   );
 }
-
-// You can think of these components as "pages"
-// in your app.
-
 export default App;
