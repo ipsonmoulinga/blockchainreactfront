@@ -3,7 +3,6 @@ import '../style/App.css';
 import {
   BrowserRouter as Router, Link, Route, Switch,
 } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
 import BlockChain from './BlockChain';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -15,7 +14,7 @@ function App() : ReactElement {
   return (
   <div id="App-Body">
     <Router>
-      <Grid> Links </Grid>
+      <h1> Links </h1>
       <ul>
         <li>
           <Link to="/">Home</Link>
