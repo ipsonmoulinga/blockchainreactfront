@@ -1,0 +1,15 @@
+/********************************/
+.submissionOrChangePassword{
+    background-color:transparent;
+    width: 80%;
+    max-height: 10%;
+    display: flex;
+    justify-content:space-between;
+}
+.submissionOrChangePassword Button{
+    background-color:transparent(200, 255, 0);
+    width:50%;
+    font-size: 70%;
+    color:gray;
+    font-weight: bold;
+}

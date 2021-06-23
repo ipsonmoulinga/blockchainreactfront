@@ -1,0 +1,12 @@
+.ultrlist {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+ .ultrlist li{
+    width: 100%; 
+    background-color:rgb(140, 0, 255); 
+    margin: 0;
+    padding: 0;
+}

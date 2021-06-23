@@ -1,0 +1,45 @@
+#menu-accordeon-transaction {
+    padding:0;
+    margin:0;
+    list-style:none;    
+    width: 100%;
+  }
+  #menu-accordeon-transaction ul {
+    padding:0;
+    margin:0;
+    list-style:none;    
+    width: 100%;
+  }
+  #menu-accordeon-transaction li {
+    background-color: rgba(255,215,0); 
+    border-radius: 6px;
+    margin-bottom:2px;
+    box-shadow: 3px 3px 3px #999;
+    border:solid 1px #4d82b1
+ }
+
+ #menu-accordeon-transaction li li {
+  max-height:0;
+  overflow: hidden;
+  transition: all 2s;
+  border-radius:0;
+  background: rgba(255,205,0);
+  box-shadow: none;
+  border:none;
+  margin:0;
+  color:white;
+}
+
+#menu-accordeon-transaction li:hover, #menu-accordeon-transaction li:focus {
+  background:  rgba(255,225,0);
+}
+#menu-accordeon-transaction li li:hover {
+  background: #00c3ff;
+}
+#menu-accordeon-transaction ul li:last-child {
+  border-radius: 0 0 6px 6px;
+  border:none;
+}
+#menu-accordeon-transaction li:hover li, #menu-accordeon-transaction li:focus li {
+ max-height: 20em;
+}

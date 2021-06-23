@@ -1,0 +1,96 @@
+#sign-wrapper{
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    min-width: 900px;
+    min-height: 900px;
+    max-width: 3500px;
+    max-height: 3500px;
+    height: 100%;    
+    background: url("../assets/backgroundImage.png") no-repeat  center  center;
+    background-size:cover;
+
+}
+/********************************/
+#formContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;    
+    height: 40%;
+    width: 30%;
+    background-color: rgb(236, 236, 236);
+    opacity:80%;
+    border-radius: 10% 10% 0 0;
+}
+/********************************/
+.avatarContainer{
+    background-color:transparent;
+    height:25%;
+    width:80%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+#avatarIcon{
+    color:rgb(236, 236, 236);
+    font-size: 350%;
+}
+/********************************/
+.formControlContainer{
+    height:60%;
+    width:80%;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    background-color: transparent;
+}
+.inputContainer{
+    width: 100%;
+    background-color:transparent;
+    display: flex;
+    border-bottom: solid;
+    border-bottom-color: gray;
+}
+.inputContainerTextField{
+    background-color:transparent;
+    flex: 1;
+}
+.inputTextField{
+    background-color:transparent;
+    width: 100%;
+    height: 100%;
+    color:gray;
+}
+.inputIcon{
+    color:gray;
+}
+/********************************/
+#signinButton{
+    background-color:gray;
+    color:rgb(236, 236, 236);
+}
+/***************************************/
+#registerOrLoginLinkContainer{
+    margin-top: 1%;
+    font-size: larger;
+    color:gray;
+    background-color: rgb(236, 236, 236);
+    opacity:80%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:5%;
+    width:30%;
+    border-radius: 0 0 30% 30% ;
+}
+.loginRegisterForm{
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
