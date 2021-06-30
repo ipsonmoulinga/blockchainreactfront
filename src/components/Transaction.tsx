@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Itransaction } from '../model/BlockChain';
-import '../style/Transaction.css';
 
 const Transaction = (
   props:{TransactionToDisplay: Itransaction},
 ) : ReactElement => (
-    <ul id="menu-accordeon-transaction">
+    <ul >
       <li> details
         <ul>
           <li> Status of transaction:

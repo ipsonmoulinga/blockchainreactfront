@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 
-function About() : ReactElement {
+function Settings() : ReactElement {
   return (
       <div>
-        <h2>About</h2>
+        <h2>Settings</h2>
       </div>
   );
 }
-export default About;
+export default Settings;

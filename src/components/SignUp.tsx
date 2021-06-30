@@ -1,38 +1,212 @@
 import {
-  Grid, Avatar, Button, makeStyles, TextField, IconButton, withStyles, Card,
+  Grid,
+  Avatar,
+  Button,
+  makeStyles,
+  // TextField,
+  // IconButton,
+  Card,
+  // withStyles,
+  createStyles,
+  Theme,
+  // Container,
+  Input,
+  InputAdornment,
+  // withStyles,
+  // InputAdornment,
 } from '@material-ui/core';
 import '../style/Sign.css';
 import '../style/SignUp.css';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import React, { ReactElement, useState } from 'react';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import React, {
+  ReactElement, useState,
+}
+  from 'react';
 import { Link } from 'react-router-dom';
 
-const CssTextField = withStyles({
-  root: {
-    '& .MuiInputBase-root': {
-      color: 'gray',
-    },
-  },
-})(TextField);
+/** ******************* */
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
+    // '& > *': {
+    //   margin: theme.spacing(1),
+    // },
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  signWrapper: {
+    Width: '100vw',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  formContainerStyle: {
+    height: '70%',
+    width: '30%',
+    backgroundColor: 'rgb(236, 236, 236)',
+    opacity: '70%',
+    borderRadius: '2% 2% 2% 2%',
+    boxShadow: '25px 25px 50px black',
+    [theme.breakpoints.down('sm')]: {
+      width: '60vw',
+      height: '50vh',
     },
   },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  /* * ****************** ***** */
+  avatarContainerStyle: {
+    backgroundColor: 'transparent',
+    height: '25%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  large: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
+  avatar: {
+    width: theme.spacing(9),
+    height: theme.spacing(9),
+    [theme.breakpoints.down('sm')]: {
+      width: theme.spacing(7),
+      height: theme.spacing(7),
+    },
+  },
+  avatarIconStyle: {
+    color: 'rgb(236, 236, 236)',
+    backgroundColor: 'transparent',
+    fontSize: '350%',
+  },
+  /* * ****************** */
+  /* * ****************** */
+  /* * ****************** */
+  inputContainerStyle: {
+    backgroundColor: 'rgb(236, 236, 236)',
+    opacity: '75%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    height: '40%',
+  },
+  inputTextFieldContainerdStyle: {
+    width: '70%',
+    height: '20%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      width: '80%',
+      backgroundColor: 'transparent',
+    },
+  },
+  inputStyle: {
+    color: 'DimGray',
+    fontWeight: 'bold',
+    fontSize: 20,
+    '&::-webkit-input-placeholder': {
+      color: 'red',
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 15,
+    },
+  },
+  inputIcon: {
+    color: 'DimGray',
+    fontSize: '150%',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '125%',
+    },
+  },
+  iconButton: {
+    border: 'solid',
+    borderColor: 'red',
+    height: '30%',
+    width: '30%',
+  },
+  /* * ****************** */
+  /* * ****************** */
+  /* * ****************** */
+  signupButtonContainerStyle: {
+    backgroundColor: 'rgb(236, 236, 236)',
+    // opacity: '60%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '15%',
+  },
+
+  signupButtonStyle: {
+    backgroundColor: 'dimgray',
+    color: 'rgb(236, 236, 236)',
+    height: '50%',
+    width: '60%',
+    border: 'solid',
+    bordercolor: 'transparent',
+    fontSize: '130%',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: 'transparent',
+      bordercolor: 'dimgray',
+      color: 'dimgray',
+    },
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: 'dimgray',
+      fontSize: 10,
+    },
+  },
+  /** ********************************** */
+  /** ********************************* */
+  /** ******************************** */
+  registerOrLoginLinkContainer: {
+    backgroundColor: 'transparent',
+    height: '20%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'rgb(236, 236, 236)',
+    [theme.breakpoints.down('sm')]: {
+      // width: '60vw',
+    },
+  },
+  linkStyle: {
+    width: '60%',
+    height: '40%',
+    border: 'solid',
+    borderColor: 'dimGray',
+    backgroundColor: 'transparent',
+    // color: 'rgb(236, 236, 236)',
+    color: 'dimgray',
+    fontWeight: 'bold',
+    '&:hover': {
+      backgroundColor: 'DimGray',
+      color: 'rgb(236, 236, 236)',
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '150%',
+    [theme.breakpoints.down('sm')]: {
+      // backgroundColor: 'dimgray',
+      fontSize: 12,
+    },
   },
 }));
 
@@ -41,76 +215,97 @@ const SignUp = () : ReactElement => {
   // Add these variables to your component to track the state
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  // const handleMouseDownPassword = () => setShowPassword(!showPassword);
   return (
-          <Grid id="sign-wrapper">
-            <Card id="formContainer">
-              <form className='loginRegisterForm'>
-              <Grid className="avatarContainer">
-                <Avatar className={classes.large}>
-                  <PersonRoundedIcon id='avatarIcon' />
+          <Grid className={classes.signWrapper}>
+            <Card className={classes.formContainerStyle}>
+              <Grid className={classes.avatarContainerStyle}>
+                <Avatar className={classes.avatar}>
+                  <PersonRoundedIcon className={classes.avatarIconStyle}/>
                 </Avatar>
               </Grid>
-              <Grid className="formControlContainer">
-                <Grid container className='inputContainer' alignItems="flex-end">
-                  <Grid item className='inputIconContainer'>
-                    <MailOutlineIcon className='inputIcon'/>
-                  </Grid>
-                  <Grid item className='inputContainerTextField'>
-                    <CssTextField
+              <Grid className={classes.inputContainerStyle}>
+                <Grid className={classes.inputTextFieldContainerdStyle}>
+                <Grid
+                    style={{ width: '100%', backgroundColor: 'transparent' }}
+                >
+                    <Input
+                      className={classes.inputStyle}
                       type='text'
-                      className='inputTextField'
-                      label="Email adress"
-                      InputProps={{ disableUnderline: true }}
-                      InputLabelProps={{ style: { fontSize: '100%', color: 'gray' } }}/>
-                  </Grid>
-                </Grid>
-                <Grid container className='inputContainer' alignItems="flex-end">
-                  <Grid item className='inputIconContainer'>
-                    <LockOpenIcon className='inputIcon'/>
-                  </Grid>
-                  <Grid item className='inputContainerTextField'>
-                    <CssTextField
-                      type={showPassword ? 'text' : 'password'}
-                      className='inputTextField'
-                      label="Password "
-                      InputProps={{ disableUnderline: true }}
-                      InputLabelProps={{ style: { fontSize: '100%', color: 'gray' } }}
+                      placeholder='email'
+                      fullWidth={true}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <MailOutlineIcon className={classes.inputIcon}/>
+                        </InputAdornment>
+                      }
                     />
-                  </Grid >
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    size='small'
+                  </Grid>
+                </Grid>
+                <Grid className={classes.inputTextFieldContainerdStyle}>
+                  <Grid style={{ width: '100%', backgroundColor: 'transparent' }}>
+                    <Input
+                      className={classes.inputStyle}
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder='password'
+                      fullWidth={true}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <LockOpenIcon className={classes.inputIcon}/>
+                        </InputAdornment>
+                      }
+                      endAdornment={
+                        <InputAdornment position="end">
+                          {showPassword
+                            ? <VisibilityOutlinedIcon
+                                className={classes.inputIcon}
+                                onClick={handleClickShowPassword}/>
+                            : <VisibilityOffOutlinedIcon
+                                className={classes.inputIcon}
+                                onClick={handleClickShowPassword}/>
+                          }
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
+                </Grid>
+                <Grid className={classes.inputTextFieldContainerdStyle}>
+                  <Grid
+                    style={{ width: '100%', backgroundColor: 'transparent' }}
                   >
-                    {showPassword
-                      ? <VisibilityOutlinedIcon className='inputIcon'/>
-                      : <VisibilityOffOutlinedIcon className='inputIcon'/>}
-                  </IconButton>
-                </Grid>
-                <Grid container className='inputContainer' alignItems="flex-end">
-                  <Grid item className='inputIconContainer'>
-                    <LockOpenIcon className='inputIcon'/>
-                  </Grid>
-                  <Grid item className='inputContainerTextField'>
-                    <CssTextField
-                      type="password"
-                      className='inputTextField'
-                      label="Confirm password"
-                      InputProps={{ disableUnderline: true }}
-                      InputLabelProps={{ style: { fontSize: '100%', color: 'gray' } }}/>
-                    </Grid>
+                    <Input
+                      className={classes.inputStyle}
+                      type='password'
+                      placeholder='password'
+                      fullWidth={true}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <LockOpenIcon className={classes.inputIcon}/>
+                        </InputAdornment>
+                      }
+                    />
                   </Grid>
                 </Grid>
-                <Grid container id='submissionButtonContainer'>
-                  <Button id="signupButton" type="submit">Sign up</Button>
-                </Grid>
-                </form>
+              </Grid>
+              <Grid className={classes.signupButtonContainerStyle}>
+                <Button
+                  className={classes.signupButtonStyle}
+                  // disableFocusRipple={true}
+                  // disableRipple={true}
+                >
+                  Sign up
+                </Button>
+              </Grid>
+              <Grid className={classes.registerOrLoginLinkContainer}>
+                <Button
+                  className={classes.linkStyle}
+                  component={Link}
+                  to="/signin"
+                >
+                    Login
+                </Button>
+              </Grid>
             </Card>
-            <Grid id="registerOrLoginLinkContainer">
-              <Link to="/signin">Login</Link>
-            </Grid>
           </Grid>
   );
 };

@@ -7,9 +7,10 @@
     min-height: 900px;
     max-width: 3500px;
     max-height: 3500px;
-    height: 100%;    
-    background: url("../assets/backgroundImage.png") no-repeat  center  center;
-    background-size:cover;
+    height: 100vh;
+    width: 100vw;    
+    /* background: url("../assets/backgroundImage.png") no-repeat  center  center; */
+    /* background-size:cover; */
 
 }
 /********************************/
@@ -20,7 +21,7 @@
     align-items: center;    
     height: 40%;
     width: 25%;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(236, 236, 236);    
     opacity:80%;
     border-radius: 10% 10% 0 0;
 }
@@ -57,12 +58,14 @@
 .inputContainerTextField{
     background-color:transparent;
     flex: 1;
+    
 }
 .inputTextField{
     background-color:transparent;
     width: 100%;
     height: 100%;
     color:gray;
+    /* font-size: ; */
 }
 .inputIcon{
     color:gray;
@@ -77,12 +80,12 @@
     margin-top: 1%;
     font-size: larger;
     color:gray;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(52, 189, 199);
     opacity:80%;
     display: flex;
     justify-content:center;
     align-items:center;
-    height:5%;
+    height:3vw;
     width:25%;
     border-radius: 0 0 30% 30% ;
 }

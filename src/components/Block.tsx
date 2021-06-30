@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Iblock } from '../model/BlockChain';
 import TransactionList from './TransactionList';
-import '../style/Block.css';
+// import '../style/Block.css';
 
 const Block = (props:{BlockToDisplay: Iblock}) : ReactElement => (
     <ul id="bloc">
