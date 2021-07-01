@@ -22,6 +22,12 @@ export enum StatusType {
   'pending',
   'failed',
 }
+export interface ISessionUser{
+  name:string;  
+  email:string;  
+  password:string;
+  blockchainUser:Iuser;
+}
 
 export interface Iuser {
     privateKey:string;
