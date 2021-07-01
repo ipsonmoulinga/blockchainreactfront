@@ -3,17 +3,11 @@ import {
   Avatar,
   Button,
   makeStyles,
-  // TextField,
-  // IconButton,
   Card,
-  // withStyles,
   createStyles,
   Theme,
-  // Container,
   Input,
   InputAdornment,
-  // withStyles,
-  // InputAdornment,
 } from '@material-ui/core';
 import '../style/Sign.css';
 import '../style/SignUp.css';
@@ -33,9 +27,6 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     display: 'flex',
-    // '& > *': {
-    //   margin: theme.spacing(1),
-    // },
   },
   margin: {
     margin: theme.spacing(1),
@@ -142,7 +133,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   /* * ****************** */
   signupButtonContainerStyle: {
     backgroundColor: 'rgb(236, 236, 236)',
-    // opacity: '60%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -180,10 +170,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'rgb(236, 236, 236)',
-    [theme.breakpoints.down('sm')]: {
-      // width: '60vw',
-    },
   },
   linkStyle: {
     width: '60%',
@@ -191,7 +177,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     border: 'solid',
     borderColor: 'dimGray',
     backgroundColor: 'transparent',
-    // color: 'rgb(236, 236, 236)',
     color: 'dimgray',
     fontWeight: 'bold',
     '&:hover': {
@@ -204,7 +189,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'center',
     fontSize: '150%',
     [theme.breakpoints.down('sm')]: {
-      // backgroundColor: 'dimgray',
       fontSize: 12,
     },
   },
@@ -212,10 +196,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 const SignUp = () : ReactElement => {
   const classes = useStyles();
-  // Add these variables to your component to track the state
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-  // const handleMouseDownPassword = () => setShowPassword(!showPassword);
   return (
           <Grid className={classes.signWrapper}>
             <Card className={classes.formContainerStyle}>
