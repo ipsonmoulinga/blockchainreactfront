@@ -32,6 +32,8 @@ import SignUp from './SignUp';
 import BlockChain from './BlockChain';
 import { SideBarComponentList } from './SideBarComponents';
 import '../style/App.css';
+import CreateUser from './CreateUser';
+import UserCreated from './UserCreated';
 
 const drawerWidth = 240;
 // const drawerWidthLittleScreen = 50;
@@ -80,7 +82,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   drawerPaper: {
     width: drawerWidth,
-    // backgroundColor: '#ff0000',
     backgroundImage: 'linear-gradient(to bottom, #ff0000, #ff5100, #ff7700, #ff9700, #ffb300, #ecba00, #d8bf00, #c4c400, #9ab400, #71a300, #469200, #008000)',
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.down('sm')]: {
@@ -197,13 +198,6 @@ export default function PersistentDrawerLeft() : ReactElement {
       >
         <div className={classes.drawerHeader} />
            <Switch >
-               {/* <Route path="/" component={Home}/>
-               <Route path="/Settings" component={Settings}/>
-               <Route path="/about" component={About}/>
-               <Route path="/dashboard" component={Dashboard}/>
-               <Route path="/blockchain" component={BlockChain}/>
-               <Route path="/signup" component={SignUp}/>
-               <Route path="/signin" component={SignIn}/> */}
                <Route exact path="/">
                  <Home />
                </Route>
@@ -216,6 +210,12 @@ export default function PersistentDrawerLeft() : ReactElement {
                <Route path="/dashboard">
                  <Dashboard />
                </Route>
+               <Route path="/createuser">
+                 <CreateUser />
+               </Route>
+               <Route path="/usercreated/:id">
+                  <UserCreated />
+                </Route>
                <Route path="/blockchain">
                  <BlockChain />
                </Route>

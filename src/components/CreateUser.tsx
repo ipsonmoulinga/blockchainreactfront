@@ -1,10 +1,11 @@
+import { Button, Grid } from '@material-ui/core';
 import React, { ReactElement } from 'react';
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   Link,
-  Route, Switch,
+  // Route, Switch,
 } from 'react-router-dom';
-import DisplayUser from './DisplayUser';
+// import DisplayUser from './DisplayUser';
 
 const CreateUser = () : ReactElement => {
   const [email, setEmail] = React.useState('');
@@ -16,10 +17,7 @@ const CreateUser = () : ReactElement => {
     event.preventDefault();
   };
   return (
-    <Router>
-      <Switch >
-        <Route exact path="/">
-          <div>
+    <Grid>
             <form
               onSubmit={handleSubmit}
             >
@@ -40,19 +38,16 @@ const CreateUser = () : ReactElement => {
                   onChange={(e) => setPassword(e.target.value)}
                   required />
               </label>
-            </form>
-            <Link to="/display">
-              <button type='submit'>
+              <Button
+                to={`/usercreated/email:${email}-password:${password}`}
+                component={Link}>
                   Submit
-              </button>
-            </Link>
-    </div>
-          </Route>
-          <Route path="/display">
-            <DisplayUser userName={`Email:${email} et ${password}`}/>
-          </Route>
-        </Switch>
-    </Router>
+              </Button>
+            </form>
+    </Grid>
   );
 };
 export default CreateUser;
+
+// const CreateUser = () : ReactElement => (<h1>Create user</h1>);
+// export default CreateUser;
