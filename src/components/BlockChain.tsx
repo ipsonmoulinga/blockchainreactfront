@@ -4,7 +4,6 @@ import IblockChain from '../model/BlockChain';
 import getBlockChain from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';
-// import '../style/BlockChain.css';
 
 const gridContainerStyle = {
   maxWidth: '100vw',
