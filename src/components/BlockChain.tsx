@@ -1,5 +1,9 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import { Card, Grid, Typography } from '@material-ui/core';
+import {
+  Button, Card, Grid, Typography,
+} from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import pickaxe from '../assets/pickaxe.png';
 import IblockChain from '../model/BlockChain';
 import getBlockChain, { mineBlockChain } from '../service/api';
 import BlockList from './BlockList';
@@ -14,8 +18,17 @@ const gridContainerStyle = {
 const cardStyle = {
   backgroundColor: 'transparent',
 };
+const miningButtonStyle = {
+  backgroundColor: 'forestgreen',
+  borderRadius: '3% 3% 3% 3%',
+  zIndex: 2,
+  position: 'fixed' as const,
+  bottom: 20,
+  right: 20,
+};
 
 export const BlockChain = () : ReactElement => {
+  const matches = useMediaQuery('(min-width:600px)');
   const emptyBlockChain:IblockChain = {
     chain: [], transactions: [], miningReward: 0, difficulty: 0,
   };
@@ -33,7 +46,22 @@ export const BlockChain = () : ReactElement => {
   }, []);
   return (
     <Grid style={gridContainerStyle}>
-      <button onClick={setMinedBlockChainIntoTheState}> MineBlockChain </button>
+      <Button
+        style={miningButtonStyle}
+        onClick={setMinedBlockChainIntoTheState}
+      >
+        <img
+          width={45}
+          height={45}
+          src={pickaxe}/>
+        <span style={{
+          display: matches ? 'block' : 'none',
+          fontSize: 30,
+          fontWeight: 'bold',
+        }}>
+          Mine a new Block
+        </span>
+      </Button>
       <Card style={cardStyle}>
         <Typography><h3>Mining difficulty: {blockchain.difficulty}.</h3><br/></Typography>
       </Card>
