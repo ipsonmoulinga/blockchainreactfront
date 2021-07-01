@@ -29,8 +29,6 @@ import Dashboard from './Dashboard';
 import Home from './Home';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
 import BlockChain from './BlockChain';
 import { SideBarComponentList } from './SideBarComponents';
 import '../style/App.css';
