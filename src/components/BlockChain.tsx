@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import pickaxe from '../assets/pickaxe.png';
-import IblockChain from '../model/BlockChain';
+import { IblockChain } from '../model/BlockChain';
 import getBlockChain, { mineBlockChain } from '../service/api';
 import BlockList from './BlockList';
 import TransactionList from './TransactionList';

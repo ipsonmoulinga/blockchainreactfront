@@ -1,5 +1,6 @@
 import axios from 'axios';
-import IblockChain, {
+import {
+  IblockChain,
   IDatabaseOperationStatus,
   Iuser,
 } from '../model/BlockChain';
