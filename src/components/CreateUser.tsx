@@ -9,8 +9,6 @@ import {
 
 const CreateUser = () : ReactElement => {
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
   const handleSubmit = (
     event: { preventDefault: () => void; },
   ) => {
@@ -30,16 +28,8 @@ const CreateUser = () : ReactElement => {
                   onChange={(e) => setEmail(e.target.value)}
                   required />
               </label>
-              <label>
-                Password:
-                <input
-                  name="password"
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required />
-              </label>
               <Button
-                to={`/usercreated/email:${email}-password:${password}`}
+                to={`/usercreated/${email}`}
                 component={Link}>
                   Submit
               </Button>

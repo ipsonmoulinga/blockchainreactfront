@@ -34,6 +34,7 @@ import { SideBarComponentList } from './SideBarComponents';
 import '../style/App.css';
 import CreateUser from './CreateUser';
 import UserCreated from './UserCreated';
+import DisplayAllUsers from './DisplayAllUsers';
 
 const drawerWidth = 240;
 // const drawerWidthLittleScreen = 50;
@@ -224,6 +225,9 @@ export default function PersistentDrawerLeft() : ReactElement {
                </Route>
                <Route path="/signin">
                  <SignIn />
+               </Route>
+               <Route path="/displayallusers">
+                 <DisplayAllUsers />
                </Route>
              </Switch>
       </main>

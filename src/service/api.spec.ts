@@ -1,4 +1,7 @@
-import getBlockChain, { createUser, mineBlockChain } from './api';
+import getBlockChain, {
+  // createUser,
+  mineBlockChain,
+} from './api';
 
 describe('getBlockChain', () => {
   it('should returns a blockchain ', async () => {
@@ -34,13 +37,13 @@ describe('mineBlockChain', () => {
     expect(result.chain.length).toEqual(blockchainToMine.chain.length + 1);
   });
 });
-describe('createUser', () => {
-  it('should returns a user ', async () => {
-    // given
-    const userName = 'Ipson';
-    // when
-    const result = await createUser(userName);
-    // then
-    expect(result.publicKey).toEqual(userName);
-  });
-});
+// describe('createUser', () => {
+//   it('should returns a user ', async () => {
+//     // given
+//     const userName = 'Ipson';
+//     // when
+//     const result = await createUser(userName);
+//     // then
+//     expect(result.PublicKey).toEqual(userName);
+//   });
+// });

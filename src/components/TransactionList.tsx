@@ -26,10 +26,10 @@ const TransactionList = (props:{transactionList: Itransaction[]}) : ReactElement
                 <Typography> Transaction amount : {transaction.amount}</Typography>
             </AccordionDetails>
             <AccordionDetails style={detailStyle}>
-                <Typography>Transaction receiver : {(transaction.receiver) ? (transaction.receiver.privateKey) : 'No One'}</Typography>
+                <Typography>Transaction receiver : {(transaction.receiver) ? (transaction.receiver.PrivateKey) : 'No One'}</Typography>
             </AccordionDetails>
             <AccordionDetails style={detailStyle}>
-                <Typography>Transaction sender : {(transaction.sender) ? (transaction.sender.privateKey) : 'No One'}</Typography>
+                <Typography>Transaction sender : {(transaction.sender) ? (transaction.sender.PrivateKey) : 'No One'}</Typography>
             </AccordionDetails>
         </Accordion>))}
     </Grid>

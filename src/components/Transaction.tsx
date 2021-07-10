@@ -12,11 +12,11 @@ const Transaction = (
           </li>
           <li> Amount : {props.TransactionToDisplay.amount}</li>
           <li> Sender: {(props.TransactionToDisplay.sender)
-            ? props.TransactionToDisplay.sender.privateKey
+            ? props.TransactionToDisplay.sender.PrivateKey
             : 'None'}
           </li>
           <li> Receiver: {(props.TransactionToDisplay.receiver)
-            ? props.TransactionToDisplay.receiver.privateKey
+            ? props.TransactionToDisplay.receiver.PrivateKey
             : 'Noner'}
           </li>
         </ul>

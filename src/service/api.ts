@@ -1,5 +1,8 @@
 import axios from 'axios';
-import IblockChain, { Iuser } from '../model/BlockChain';
+import IblockChain, {
+  IDatabaseOperationStatus,
+  Iuser,
+} from '../model/BlockChain';
 
 const getBlockChain = async () :Promise<IblockChain> => {
   const emptyBlockChain :IblockChain = {
@@ -9,7 +12,7 @@ const getBlockChain = async () :Promise<IblockChain> => {
     difficulty: 0,
   };
   try {
-    const response = await axios.get('https://ywv60ov27i.execute-api.eu-west-3.amazonaws.com/dev/blockchain');
+    const response = await axios.get('https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/blockchain');
     return response.data;
   } catch (error) {
     console.error(error);
@@ -20,20 +23,30 @@ export default getBlockChain;
 
 export const mineBlockChain = async (blockchainToMine : IblockChain) :Promise<IblockChain> => {
   try {
-    const response = await axios.get('https://ywv60ov27i.execute-api.eu-west-3.amazonaws.com/dev/mine');
+    const response = await axios.get('https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/mine');
     return response.data;
   } catch (error) {
     console.error(error);
     return blockchainToMine;
   }
 };
-export const createUser = async (name:string) :Promise<Iuser> => {
-  const defaultUser:Iuser = { privateKey: '', publicKey: '' };
+export const createUser = async (name:string) :Promise<IDatabaseOperationStatus> => {
   try {
-    const response = await axios.get(`https://ywv60ov27i.execute-api.eu-west-3.amazonaws.com/dev/user/${name}`);
+    const response = await axios.get(`https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/createUser/${name}`);
     return response.data;
   } catch (error) {
     console.error(error);
-    return defaultUser;
+    return IDatabaseOperationStatus.failure;
+  }
+};
+export const getAllUsers = async (): Promise<Iuser[]> => {
+  const EmptyUsersTable :Iuser[] = [];
+  try {
+    const response = await axios
+      .get('https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/blockChainUsers');
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return EmptyUsersTable;
   }
 };
