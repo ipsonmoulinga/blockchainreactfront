@@ -18,9 +18,9 @@ export interface Itransaction {
 }
 
 export enum StatusType {
-  'achieved',
-  'pending',
-  'failed',
+  'achieved'='achieved',
+  'pending'='pending',
+  'failed'='failed',
 }
 
 export interface ISessionUser{

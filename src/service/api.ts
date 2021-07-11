@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   IblockChain,
   IDatabaseOperationStatus,
+  Itransaction,
   Iuser,
 } from '../model/BlockChain';
 
@@ -49,5 +50,18 @@ export const getAllUsers = async (): Promise<Iuser[]> => {
   } catch (error) {
     console.error(error);
     return EmptyUsersTable;
+  }
+};
+export const getAllTransactionsByUsers = async (
+  publickey:string,
+): Promise<Itransaction[]> => {
+  const EmptyUsersTransactions :Itransaction[] = [];
+  try {
+    const response = await axios
+      .get(`https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/getAllTransactions/${publickey}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return EmptyUsersTransactions;
   }
 };

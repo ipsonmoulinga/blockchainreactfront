@@ -4,6 +4,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import InsertLinkIcon from '@material-ui/icons/InsertLink';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import ListIcon from '@material-ui/icons/List';
 import InfoIcon from '@material-ui/icons/Info';
 import BlockChain from './BlockChain';
 import { ISideBarComponent } from './SideBar';
@@ -14,6 +15,7 @@ import Home from './Home';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import CreateUser from './CreateUser';
+import DisplayAllUsers from './DisplayAllUsers';
 
 export const HomeSideBarElement : ISideBarComponent = {
   name: 'Home',
@@ -65,8 +67,14 @@ export const CreateUserElement : ISideBarComponent = {
   component: <CreateUser />,
   icon: <PersonRoundedIcon/>,
 };
+export const DisplayAllUsersElement : ISideBarComponent = {
+  name: 'Show all users',
+  link: '/displayallusers',
+  component: <DisplayAllUsers />,
+  icon: <ListIcon/>,
+};
 export const SideBarComponentList : ISideBarComponent[] = [
   HomeSideBarElement, AboutSideBarElement,
   DashBoardSideBarElement, SettingsSideBarElement, BlockChainSideBarElement,
-  SignUpSideBarElement, SignInSideBarElement, CreateUserElement,
+  SignUpSideBarElement, SignInSideBarElement, CreateUserElement, DisplayAllUsersElement,
 ];

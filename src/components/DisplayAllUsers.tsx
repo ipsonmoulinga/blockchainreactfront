@@ -2,14 +2,15 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import {
   Paper,
   Table, TableBody,
-  TableCell, TableContainer, TableHead, TableRow, makeStyles,
+  TableCell, TableContainer, TableHead, TableRow, makeStyles, Button, Theme, createStyles,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { Iuser } from '../model/BlockChain';
 import { getAllUsers } from '../service/api';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   table: {
-    minWidth: '80vh',
+    width: '80vw',
     backgroundColor: 'transparent',
   },
   tableContainer: {
@@ -23,13 +24,32 @@ const useStyles = makeStyles({
   },
   tableCell: {
     backgroundColor: 'transparent',
-    color: 'white',
+    verticalAlign: 'top',
+    width: '100%',
+    // wordBreak: 'break-word' as const,
+    // color: 'white',
     fontWeight: 'bold',
-    fontSize: '190%',
+    fontSize: '120%',
   },
-});
+  tableCell2: {
+    backgroundColor: 'transparent',
+    verticalAlign: 'top',
+    width: '100%',
+    fontWeight: 'bold',
+    fontSize: '120%',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  transactionbutton: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+  },
+}));
 
-const DisplayAllUser = () : ReactElement => {
+const DisplayAllUsers = () : ReactElement => {
   const classes = useStyles();
   const [userList, setUserList] = useState<Iuser[]>([]);
   const setUserIntoTheState = async () => {
@@ -52,7 +72,7 @@ const DisplayAllUser = () : ReactElement => {
         >
           <TableRow>
             <TableCell className={classes.tableCell}>Public key</TableCell>
-            <TableCell className={classes.tableCell}>Private key</TableCell>
+            <TableCell className={classes.tableCell2}>Private key</TableCell>
           </TableRow>
         </TableHead>
         <TableBody
@@ -65,11 +85,24 @@ const DisplayAllUser = () : ReactElement => {
                 className={classes.tableCell}
               >
                 {user.PublicKey}
+                <Button
+                  className={classes.transactionbutton}
+                  component={Link}
+                  to={`/displaytransactions/${user.PublicKey}`}
+                >
+                  Transactions
+                </Button>
               </TableCell>
               <TableCell
-                className={classes.tableCell}
+                className={classes.tableCell2}
               >
                 {user.PrivateKey}
+                <Button
+                  component={Link}
+                  to={`/displaytransactions/${user.PublicKey}`}
+                >
+                  Transactions
+                </Button>
               </TableCell>
             </TableRow>
           ))}
@@ -79,26 +112,4 @@ const DisplayAllUser = () : ReactElement => {
     </div>
   );
 };
-export default DisplayAllUser;
-
-// const DisplayAllUser = () : ReactElement => {
-//   // const classes = useStyles();
-//   const [userList, setUserList] = useState<Iuser[]>([]);
-//   const setUserIntoTheState = async () => {
-//     const response = await getAllUsers();
-//     setUserList(response);
-//   };
-//   useEffect(() => {
-//     setUserIntoTheState();
-//   }, []);
-//   return (
-//     <div>
-//       <ul>
-//         {userList.map((user:Iuser, index:number) => (
-//         <li key={index}>{user.PrivateKey}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-// export default DisplayAllUser;
+export default DisplayAllUsers;

@@ -1,5 +1,6 @@
+import { StatusType } from '../model/BlockChain';
 import getBlockChain, {
-  // createUser,
+  getAllTransactionsByUsers,
   mineBlockChain,
 } from './api';
 
@@ -15,7 +16,7 @@ describe('getBlockChain', () => {
     expect(result.miningReward).toEqual(givenMiningReward);
     expect(result.chain[0].previousId).toEqual(undefined);
     expect(result.chain[1].id.substring(0, 2)).toEqual('00');
-    expect(result.transactions[0].status).toEqual(0);
+    expect(result.transactions[0].status).toEqual(StatusType.achieved);
   });
 });
 
@@ -33,17 +34,17 @@ describe('mineBlockChain', () => {
     expect(result.miningReward).toEqual(givenMiningReward);
     expect(result.chain[0].previousId).toEqual(undefined);
     expect(result.chain[1].id.substring(0, 2)).toEqual('00');
-    expect(result.transactions[0].status).toEqual(0);
+    expect(result.transactions[0].status).toEqual(StatusType.achieved);
     expect(result.chain.length).toEqual(blockchainToMine.chain.length + 1);
   });
 });
-// describe('createUser', () => {
-//   it('should returns a user ', async () => {
-//     // given
-//     const userName = 'Ipson';
-//     // when
-//     const result = await createUser(userName);
-//     // then
-//     expect(result.PublicKey).toEqual(userName);
-//   });
-// });
+describe('getAllTransactionsByUsers', () => {
+  it('should returns all transactions initiated by a user ', async () => {
+    // given
+    const MinerPublicKey = 'secondMiner';
+    // when
+    const result = await getAllTransactionsByUsers(MinerPublicKey);
+    // then
+    expect(result.length).toEqual(3);
+  });
+});

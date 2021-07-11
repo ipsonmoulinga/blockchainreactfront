@@ -8,7 +8,7 @@ const Transaction = (
       <li> details
         <ul>
           <li> Status of transaction:
-              {(props.TransactionToDisplay.status === 1) ? ' Pending' : ' Achieved'}
+              {props.TransactionToDisplay.status}
           </li>
           <li> Amount : {props.TransactionToDisplay.amount}</li>
           <li> Sender: {(props.TransactionToDisplay.sender)
