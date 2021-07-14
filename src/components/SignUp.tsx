@@ -3,7 +3,6 @@ import {
   Avatar,
   Button,
   makeStyles,
-  Card,
   createStyles,
   Theme,
   Input,
@@ -20,8 +19,8 @@ import React, {
   ReactElement, useState,
 }
   from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 /** ******************* */
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -198,9 +197,32 @@ const SignUp = () : ReactElement => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const [email, setEmail] = useState('');
+  const history = useHistory();
+  const handleSubmit = () => {
+    try {
+      const host = 'https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/';
+      // const host2 = 'http://localhost:2000/';
+      const link = 'createUser';
+      const formData = new FormData();
+      formData.append('publickey', email);
+      axios({
+        url: `${host}${link}`,
+        method: 'POST',
+        data: formData,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      history.push('/displayallusers');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
           <Grid className={classes.signWrapper}>
-            <Card className={classes.formContainerStyle}>
+            <form className={classes.formContainerStyle}>
               <Grid className={classes.avatarContainerStyle}>
                 <Avatar className={classes.avatar}>
                   <PersonRoundedIcon className={classes.avatarIconStyle}/>
@@ -214,6 +236,8 @@ const SignUp = () : ReactElement => {
                     <Input
                       className={classes.inputStyle}
                       type='text'
+                      name='privatekey'
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder='email'
                       fullWidth={true}
                       startAdornment={
@@ -272,8 +296,7 @@ const SignUp = () : ReactElement => {
               <Grid className={classes.signupButtonContainerStyle}>
                 <Button
                   className={classes.signupButtonStyle}
-                  // disableFocusRipple={true}
-                  // disableRipple={true}
+                  onClick={handleSubmit}
                 >
                   Sign up
                 </Button>
@@ -287,7 +310,7 @@ const SignUp = () : ReactElement => {
                     Login
                 </Button>
               </Grid>
-            </Card>
+            </form>
           </Grid>
   );
 };

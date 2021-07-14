@@ -137,105 +137,102 @@ export default function PersistentDrawerLeft() : ReactElement {
 
   return (
     <Router>
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar className={classes.toolBar}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Barre de navigation
-          </Typography>
-          <IconButton
-            edge="end"
-            aria-label="login"
-          >
-            <PersonIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {SideBarComponentList.map((sidebarcomponent:ISideBarComponent, index:number) => (
-            <ListItem button
-                key={index}
-                component={Link}
-                to={sidebarcomponent.link}>
-              <ListItemIcon>{sidebarcomponent.icon}</ListItemIcon>
-              <ListItemText primary={sidebarcomponent.name} id='drawertext'/>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-           <Switch >
-               <Route exact path="/">
-                 <Home />
-               </Route>
-               <Route path="/Settings">
-                 <Settings/>
-               </Route>
-               <Route path="/about">
-                 <About />
-               </Route>
-               <Route path="/dashboard">
-                 <Dashboard />
-               </Route>
-               <Route path="/createuser">
-                 <CreateUser />
-               </Route>
-                <Route path="/displaytransactions/:publickey">
-                  <DisplayTransactionsByUser />
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar className={classes.toolBar}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+              Barre de navigation
+            </Typography>
+            <IconButton>
+              <PersonIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {SideBarComponentList.map((sidebarcomponent:ISideBarComponent, index:number) => (
+              <ListItem button
+                  key={index}
+                  component={Link}
+                  to={sidebarcomponent.link}>
+                <ListItemIcon>{sidebarcomponent.icon}</ListItemIcon>
+                <ListItemText primary={sidebarcomponent.name} id='drawertext'/>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+            <Switch >
+                <Route exact path="/">
+                  <Home />
                 </Route>
-               <Route path="/blockchain">
-                 <BlockChain />
-               </Route>
-               <Route path="/signup">
-                 <SignUp />
-               </Route>
-               <Route path="/signin">
-                 <SignIn />
-               </Route>
-               <Route path="/displayallusers">
-                 <DisplayAllUsers />
-               </Route>
-               <Route path="/usercreated/:id">
-                 <UserCreated />
-               </Route>
-             </Switch>
-      </main>
-    </div>
+                <Route path="/Settings">
+                  <Settings/>
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/dashboard">
+                  <Dashboard />
+                </Route>
+                <Route path="/createuser">
+                  <CreateUser />
+                </Route>
+                  <Route path="/displaytransactions/:publickey">
+                    <DisplayTransactionsByUser />
+                  </Route>
+                <Route path="/blockchain">
+                  <BlockChain />
+                </Route>
+                <Route path="/signup">
+                  <SignUp />
+                </Route>
+                <Route path="/signin">
+                  <SignIn />
+                </Route>
+                <Route path="/displayallusers">
+                  <DisplayAllUsers />
+                </Route>
+                <Route path="/usercreated/:id">
+                  <UserCreated />
+                </Route>
+              </Switch>
+        </main>
+      </div>
     </Router>
   );
 }
