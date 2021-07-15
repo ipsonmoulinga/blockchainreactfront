@@ -15,8 +15,11 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import React, {
   ReactElement, useEffect, useState,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Iuser } from '../model/BlockChain';
-import { getAllUsers, getBalance, updateTransactionState } from '../service/api';
+import {
+  getAllUsers, getBalance, postTransaction, updateTransactionState,
+} from '../service/api';
 import { TransactionSender, TransactionState } from '../model/Form';
 
 /** ******************* */
@@ -103,6 +106,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   inputStyle: {
     color: 'DimGray',
+    width: '100%',
     fontWeight: 'bold',
     fontSize: 20,
     '&::-webkit-input-placeholder': {
@@ -193,6 +197,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export const CreateTransaction = () : ReactElement => {
   const classes = useStyles();
+  const history = useHistory();
   const [userList, setUserList] = useState<Iuser[]>([]);
   const [transactionValidity, setTransactionValidity] = useState<TransactionState>({ isValid: true, helperText: '', receiverHelperText: '' });
   const [sender, setSender] = useState<TransactionSender>({ publickey: '', balance: 0 });
@@ -219,6 +224,14 @@ export const CreateTransaction = () : ReactElement => {
   const updateReceiverState = (e: { target: { value: string; }; }) => {
     setReceiver(e.target.value);
     setTransactionValidity(updateTransactionState(amount, sender, e.target.value));
+  };
+  const handleSubmit = async () => {
+    try {
+      await postTransaction(amount, sender.publickey, receiver);
+      history.push('/blockchain');
+    } catch (error) {
+      console.error(error);
+    }
   };
   useEffect(() => {
     setUserIntoTheState();
@@ -295,7 +308,7 @@ export const CreateTransaction = () : ReactElement => {
         <Grid className={classes.registerOrLoginLinkContainer}>
           <Button
             className={classes.linkStyle}
-            type="submit"
+            onClick={handleSubmit}
             disabled={!transactionValidity.isValid}
           >
             Create transaction

@@ -184,3 +184,29 @@ export const updateTransactionState = (
     ? (`${receiverChoosed} cannot send money to himself`)
     : '',
 });
+
+export const postTransaction = async (
+  amount:number, sender:string, receiver:string,
+) :Promise<{ amount: number, sender: string, receiver: string }> => {
+  const host = 'https://wuwoxec28k.execute-api.eu-west-3.amazonaws.com/dev/';
+  const link = 'createTransaction';
+  const formData = new FormData();
+  formData.append('amount', `${amount}`);
+  formData.append('sender', sender);
+  formData.append('receiver', receiver);
+  try {
+    const response = await axios({
+      url: `${host}${link}`,
+      method: 'POST',
+      data: formData,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return { amount: 0, sender: '', receiver: '' };
+  }
+};
