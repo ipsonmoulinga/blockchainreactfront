@@ -107,6 +107,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   inputStyle: {
     color: 'DimGray',
     width: '100%',
+    display: 'inline-block',
+    wordBreak: 'break-word' as const,
     fontWeight: 'bold',
     fontSize: 20,
     '&::-webkit-input-placeholder': {
@@ -174,7 +176,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   linkStyle: {
     width: '60%',
-    height: '40%',
     border: 'solid',
     borderColor: 'dimGray',
     backgroundColor: 'transparent',
@@ -268,7 +269,7 @@ export const CreateTransaction = () : ReactElement => {
                         <select
                             onChange={updateSender}
                             className={classes.inputStyle}>
-                            <option>--Please choose a sender--</option>
+                            <option>--Sender--</option>
                             {userList
                               .map((user: Iuser) => user.PublicKey)
                               .map((userPublicKey, index) => (
@@ -287,7 +288,7 @@ export const CreateTransaction = () : ReactElement => {
                         <select
                             onChange={updateReceiverState}
                             className={classes.inputStyle}>
-                            <option>-- Please choose a receiver --</option>
+                            <option>-- Receiver --</option>
                             {userList
                               .map((user: Iuser) => user.PublicKey)
                               .map((userPublicKey, index) => (
