@@ -1,15 +1,24 @@
 import {
   Button, FormControl, FormHelperText, Input,
 } from '@material-ui/core';
-
-// import { TextField } from "material-ui";
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Iuser } from '../model/BlockChain';
-import { getAllUsers } from '../service/api';
+import { EmailState, PasswordState } from '../model/Form';
+import {
+  emailTextualValidityManager,
+  emailValiditionManager,
+  getAllUsers, passWordConfirmationManager, passWordStrengthManager,
+} from '../service/api';
+import CreateTransaction from './CreateTransaction';
 
-const FormValidator = (): ReactElement => {
-  const [emailValidity, setEmailValidity] = useState({ bool: true, helperText: '' });
-  const [passwordValidity, setPasswordValidity] = useState({ bool: true, helperTextcolor: 'red', helperText: '' });
+export const FormValidator = (): ReactElement => {
+  const [emailValidity, setEmailValidity] = useState<EmailState>({ isValid: true, helperText: '' });
+  const [passwordValidity, setPasswordValidity] = useState<PasswordState>({
+    isValid: true, helperTextcolor: 'red', helperText: '', value: '',
+  });
+  const [passwordConfirmationValidity, setPasswordConfirmationValidity] = useState<PasswordState>({
+    isValid: true, helperTextcolor: 'red', helperText: '', value: '',
+  });
   const [userList, setUserList] = useState<string[]>([]);
   const setUserListIntoTheState = async () => {
     const list = (await getAllUsers()).map((user:Iuser) => user.PublicKey);
@@ -17,30 +26,18 @@ const FormValidator = (): ReactElement => {
   };
 
   const checkEmailValidity = (e: { target: { value: string; }; }) => {
-    if (!e.target.value) {
-      setEmailValidity({ bool: false, helperText: 'Type your email' });
-    } else if (userList.includes(e.target.value)) {
-      setEmailValidity({ bool: false, helperText: 'Email already exist' });
-    } else {
-      setEmailValidity({ bool: true, helperText: '' });
-    }
+    setEmailValidity(emailValiditionManager(userList, e.target.value));
   };
   const checkEmailTextualValidity = (e: { target: { value: string; }; }) => {
-    const re = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(e.target.value)) {
-      setEmailValidity({ bool: false, helperText: 'Please type a valid email' });
-    } else {
-      checkEmailValidity(e);
-    }
+    setEmailValidity(emailTextualValidityManager(userList, e.target.value));
   };
   const checkPassWordValidity = (e: { target: { value: string; }; }) => {
-    if ((e.target.value).length<8) {
-      setEmailValidity({ bool: false, helperText: 'Weak: Empty password' });
-    } else if ( .includes(e.target.value)) {
-      setEmailValidity({ bool: false, helperText: 'Email already exist' });
-    } else {
-      setEmailValidity({ bool: true, helperText: '' });
-    }
+    setPasswordValidity(passWordStrengthManager(e.target.value));
+  };
+  const checkPassWordConfirmationValidity = (e: { target: { value: string; }; }) => {
+    setPasswordConfirmationValidity(
+      passWordConfirmationManager(passwordValidity.value, e.target.value),
+    );
   };
   useEffect(() => {
     setUserListIntoTheState();
@@ -50,16 +47,16 @@ const FormValidator = (): ReactElement => {
         <FormControl>
             <Input
                 type='email'
-                required={true}
                 placeholder="email"
+                required={true}
                 onBlur={checkEmailTextualValidity}
                 onChange={checkEmailValidity}
-                error={!emailValidity.bool}
+                error={!emailValidity.isValid}
             />
             <FormHelperText
-                error={emailValidity.bool}
+                error={emailValidity.isValid}
                 style={{ color: 'red' }}
-                disabled={emailValidity.bool}>
+                disabled={emailValidity.isValid}>
                 {emailValidity.helperText}
             </FormHelperText>
         </FormControl>
@@ -67,21 +64,51 @@ const FormValidator = (): ReactElement => {
         <FormControl>
             <Input
                 type='password'
+                placeholder="password"
                 required={true}
-                placeholder="email"
-                onBlur={checkTextualValidity}
-                onChange={checkValidity}
-                error={!emailValidity.bool}
+                onChange={checkPassWordValidity}
             />
             <FormHelperText
-                error={emailValidity.bool}
-                style={{ color: 'red' }}
-                disabled={emailValidity.bool}>
-                {emailValidity.helperText}
+                style={{ color: passwordValidity.helperTextcolor }}
+                disabled={emailValidity.isValid}>
+                {passwordValidity.helperText}
             </FormHelperText>
         </FormControl>
-        <Button disabled={!emailValidity.bool} type='submit'>submit</Button>
+        <br></br><br></br>
+        <FormControl>
+            <Input
+                type='password'
+                placeholder="password confirmation"
+                required={true}
+                onBlur={checkPassWordConfirmationValidity}
+            />
+            <FormHelperText
+                style={{ color: passwordConfirmationValidity.helperTextcolor }}
+                disabled={passwordConfirmationValidity.isValid}>
+                {passwordConfirmationValidity.helperText}
+            </FormHelperText>
+        </FormControl>
+        <br></br>
+        <br></br>
+        <Button
+          disabled={!(emailValidity.isValid
+            && passwordValidity.isValid
+            && passwordConfirmationValidity.isValid)}
+          type='submit'>
+            submit
+        </Button>
     </form>
   );
 };
-export default FormValidator;
+
+const Home = () : ReactElement => <div
+  // style={{ backgroundColor: 'yellow', textAlign: 'center' }}
+  >
+    <h2>Home</h2>
+    <br></br>
+    <div>
+      {/* <FormValidator /> */}
+      <CreateTransaction/>
+    </div>
+  </div>;
+export default Home;

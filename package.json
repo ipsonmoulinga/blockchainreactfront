@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.8.3",
     "@types/material-ui": "^0.21.8",
     "axios": "^0.21.1",
+    "check-password-strength": "^2.0.3",
     "clsx": "^1.1.1",
     "material-paper": "^0.0.8",
     "material-ui": "^0.20.2",
