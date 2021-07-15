@@ -6,7 +6,9 @@ import {
   Itransaction,
   Iuser,
 } from '../model/BlockChain';
-import { EmailState, PasswordState } from '../model/Form';
+import {
+  EmailState, PasswordState, TransactionSender, TransactionState,
+} from '../model/Form';
 
 const getBlockChain = async () :Promise<IblockChain> => {
   const emptyBlockChain :IblockChain = {
@@ -167,11 +169,18 @@ export const passWordConfirmationManager = (
 /* ******************************** */
 // Transaction validation
 /* ******************************** */
-export const transactionConfirmationManager = (
-  amount:number, senderBalance: number,
-) : boolean => {
-  if (amount > senderBalance) {
-    return false;
-  }
-  return true;
-};
+export const updateTransactionState = (
+  amountToExchange:number, senderChoosed:TransactionSender, receiverChoosed:string,
+) :TransactionState => ({
+  isValid: (amountToExchange <= senderChoosed.balance
+              && senderChoosed.publickey !== receiverChoosed),
+  helperText: (amountToExchange <= senderChoosed.balance)
+    ? ''
+    : `${senderChoosed.publickey} has not enough credits`,
+  receiverHelperText: (
+    senderChoosed.publickey
+      && receiverChoosed
+      && senderChoosed.publickey === receiverChoosed)
+    ? (`${receiverChoosed} cannot send money to himself`)
+    : '',
+});

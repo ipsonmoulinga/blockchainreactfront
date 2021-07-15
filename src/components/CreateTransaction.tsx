@@ -6,7 +6,6 @@ import {
   createStyles,
   Theme,
   Input,
-  // FormHelperText,
   FormControl,
   FormHelperText,
 } from '@material-ui/core';
@@ -17,8 +16,7 @@ import React, {
   ReactElement, useEffect, useState,
 } from 'react';
 import { Iuser } from '../model/BlockChain';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { getAllUsers, getBalance, transactionConfirmationManager } from '../service/api';
+import { getAllUsers, getBalance, updateTransactionState } from '../service/api';
 import { TransactionSender, TransactionState } from '../model/Form';
 
 /** ******************* */
@@ -199,49 +197,28 @@ export const CreateTransaction = () : ReactElement => {
   const [transactionValidity, setTransactionValidity] = useState<TransactionState>({ isValid: true, helperText: '', receiverHelperText: '' });
   const [sender, setSender] = useState<TransactionSender>({ publickey: '', balance: 0 });
   const [receiver, setReceiver] = useState<string>('');
-  // const [receiverHelperText, setReceiverHelperText] = useState<string>('');
-  // const [receiverHelperStatus, setReceiverHelperStatus] = useState<boolean>(true);
   const [amount, setAmount] = useState<number>(0);
   const setUserIntoTheState = async () => {
     const response = await getAllUsers();
     setUserList(response);
   };
 
-  const updateTransactionState = (
-    amountToExchange:number, senderChoosed:TransactionSender, receiverChoosed:string,
-  ) => {
-    setTransactionValidity(
-      {
-        isValid: (amountToExchange <= senderChoosed.balance
-          && senderChoosed.publickey !== receiverChoosed),
-        helperText: (amountToExchange <= senderChoosed.balance)
-          ? ''
-          : `${senderChoosed.publickey} has not enough credits`,
-        receiverHelperText: (
-          senderChoosed.publickey
-          && receiverChoosed
-          && senderChoosed.publickey === receiverChoosed)
-          ? (`${receiverChoosed} cannot send money to himself`)
-          : '',
-      },
-    );
-  };
   const updateSender = async (event: { target: { value: string; }; }) => {
     setSender({ publickey: event.target.value, balance: (await getBalance(event.target.value)) });
-    updateTransactionState(amount,
+    setTransactionValidity(updateTransactionState(amount,
       {
         publickey: event.target.value,
         balance: (await getBalance(event.target.value)),
       },
-      receiver);
+      receiver));
   };
   const updateAmount = (event: { target: { value: string; }; }) => {
     setAmount(Number(event.target.value));
-    updateTransactionState(Number(event.target.value), sender, receiver);
+    setTransactionValidity(updateTransactionState(Number(event.target.value), sender, receiver));
   };
   const updateReceiverState = (e: { target: { value: string; }; }) => {
     setReceiver(e.target.value);
-    updateTransactionState(amount, sender, e.target.value);
+    setTransactionValidity(updateTransactionState(amount, sender, e.target.value));
   };
   useEffect(() => {
     setUserIntoTheState();
@@ -281,7 +258,6 @@ export const CreateTransaction = () : ReactElement => {
                             <option>--Please choose a sender--</option>
                             {userList
                               .map((user: Iuser) => user.PublicKey)
-                              // .filter((userpublickey: string) => userpublickey !== receiver)
                               .map((userPublicKey, index) => (
                                     <option key={index} value={userPublicKey}>
                                         {userPublicKey}
@@ -301,8 +277,6 @@ export const CreateTransaction = () : ReactElement => {
                             <option>-- Please choose a receiver --</option>
                             {userList
                               .map((user: Iuser) => user.PublicKey)
-                              // eslint-disable-next-line max-len
-                              // .filter((userpublickey: string) => userpublickey !== sender.publickey)
                               .map((userPublicKey, index) => (
                                 <option key={index} value={userPublicKey}>
                                     {userPublicKey}
