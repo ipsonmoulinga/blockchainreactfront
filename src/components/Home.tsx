@@ -43,8 +43,8 @@ export const FormValidator = (): ReactElement => {
     setUserListIntoTheState();
   }, []);
   return (
-    <form>
-        <FormControl>
+    <form style={{ maxWidth: '70%' }}>
+        <FormControl style={{ width: '100%' }}>
             <Input
                 type='email'
                 placeholder="email"
@@ -61,7 +61,7 @@ export const FormValidator = (): ReactElement => {
             </FormHelperText>
         </FormControl>
         <br></br><br></br>
-        <FormControl>
+        <FormControl style={{ width: '100%' }}>
             <Input
                 type='password'
                 placeholder="password"
@@ -75,7 +75,7 @@ export const FormValidator = (): ReactElement => {
             </FormHelperText>
         </FormControl>
         <br></br><br></br>
-        <FormControl>
+        <FormControl style={{ width: '100%' }}>
             <Input
                 type='password'
                 placeholder="password confirmation"
