@@ -9,7 +9,7 @@ import {
   emailValiditionManager,
   getAllUsers, passWordConfirmationManager, passWordStrengthManager,
 } from '../service/api';
-import CreateTransaction from './CreateTransaction';
+// import CreateTransaction from './CreateTransaction';
 
 export const FormValidator = (): ReactElement => {
   const [emailValidity, setEmailValidity] = useState<EmailState>({ isValid: true, helperText: '' });
@@ -43,7 +43,7 @@ export const FormValidator = (): ReactElement => {
     setUserListIntoTheState();
   }, []);
   return (
-    <form style={{ maxWidth: '70%' }}>
+    <form style={{ maxWidth: '70%', textAlign: 'center' }}>
         <FormControl style={{ width: '100%' }}>
             <Input
                 type='email'
@@ -61,8 +61,9 @@ export const FormValidator = (): ReactElement => {
             </FormHelperText>
         </FormControl>
         <br></br><br></br>
-        <FormControl style={{ width: '100%' }}>
+        <FormControl style={{ width: '70%' }}>
             <Input
+                style={{ width: '70%' }}
                 type='password'
                 placeholder="password"
                 required={true}
@@ -75,7 +76,7 @@ export const FormValidator = (): ReactElement => {
             </FormHelperText>
         </FormControl>
         <br></br><br></br>
-        <FormControl style={{ width: '100%' }}>
+        <FormControl style={{ width: '70%' }}>
             <Input
                 type='password'
                 placeholder="password confirmation"
@@ -108,7 +109,7 @@ const Home = () : ReactElement => <div
     <br></br>
     <div>
       {/* <FormValidator /> */}
-      <CreateTransaction/>
+      {/* <CreateTransaction/> */}
     </div>
   </div>;
 export default Home;
