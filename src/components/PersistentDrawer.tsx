@@ -32,10 +32,8 @@ import SignUp from './SignUp';
 import BlockChain from './BlockChain';
 import { SideBarComponentList } from './SideBarComponents';
 import '../style/App.css';
-import CreateUser from './CreateUser';
 import DisplayTransactionsByUser from './DisplayTransactionsByUser';
 import DisplayAllUsers from './DisplayAllUsers';
-import UserCreated from './UserCreated';
 
 const drawerWidth = 240;
 // const drawerWidthLittleScreen = 50;
@@ -212,9 +210,6 @@ export default function PersistentDrawerLeft() : ReactElement {
                <Route path="/dashboard">
                  <Dashboard />
                </Route>
-               <Route path="/createuser">
-                 <CreateUser />
-               </Route>
                 <Route path="/displaytransactions/:publickey">
                   <DisplayTransactionsByUser />
                 </Route>
@@ -229,9 +224,6 @@ export default function PersistentDrawerLeft() : ReactElement {
                </Route>
                <Route path="/displayallusers">
                  <DisplayAllUsers />
-               </Route>
-               <Route path="/usercreated/:id">
-                 <UserCreated />
                </Route>
              </Switch>
       </main>

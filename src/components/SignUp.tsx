@@ -8,6 +8,8 @@ import {
   Theme,
   Input,
   InputAdornment,
+  FormControl,
+  FormHelperText,
 } from '@material-ui/core';
 import '../style/Sign.css';
 import '../style/SignUp.css';
@@ -17,10 +19,19 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import React, {
-  ReactElement, useState,
+  ReactElement, useEffect, useState,
 }
   from 'react';
 import { Link } from 'react-router-dom';
+import { EmailState, PasswordState } from '../model/Form';
+import {
+  emailTextualValidityManager,
+  emailValiditionManager,
+  getAllUsers,
+  passWordConfirmationManager,
+  passWordStrengthManager,
+} from '../service/api';
+import { Iuser } from '../model/BlockChain';
 
 /** ******************* */
 
@@ -198,6 +209,36 @@ const SignUp = () : ReactElement => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const [emailValidity, setEmailValidity] = useState<EmailState>({ isValid: true, helperText: '' });
+  const [passwordValidity, setPasswordValidity] = useState<PasswordState>({
+    isValid: true, helperTextcolor: 'red', helperText: '', value: '',
+  });
+  const [passwordConfirmationValidity, setPasswordConfirmationValidity] = useState<PasswordState>({
+    isValid: true, helperTextcolor: 'red', helperText: '', value: '',
+  });
+  const [userList, setUserList] = useState<string[]>([]);
+  const setUserListIntoTheState = async () => {
+    const list = (await getAllUsers()).map((user:Iuser) => user.PublicKey);
+    setUserList(list);
+  };
+
+  const checkEmailValidity = (e: { target: { value: string; }; }) => {
+    setEmailValidity(emailValiditionManager(userList, e.target.value));
+  };
+  const checkEmailTextualValidity = (e: { target: { value: string; }; }) => {
+    setEmailValidity(emailTextualValidityManager(userList, e.target.value));
+  };
+  const checkPassWordValidity = (e: { target: { value: string; }; }) => {
+    setPasswordValidity(passWordStrengthManager(e.target.value));
+  };
+  const checkPassWordConfirmationValidity = (e: { target: { value: string; }; }) => {
+    setPasswordConfirmationValidity(
+      passWordConfirmationManager(passwordValidity.value, e.target.value),
+    );
+  };
+  useEffect(() => {
+    setUserListIntoTheState();
+  }, []);
   return (
           <Grid className={classes.signWrapper}>
             <Card className={classes.formContainerStyle}>
@@ -208,13 +249,17 @@ const SignUp = () : ReactElement => {
               </Grid>
               <Grid className={classes.inputContainerStyle}>
                 <Grid className={classes.inputTextFieldContainerdStyle}>
-                <Grid
+                  <FormControl
                     style={{ width: '100%', backgroundColor: 'transparent' }}
-                >
+                  >
                     <Input
                       className={classes.inputStyle}
                       type='text'
                       placeholder='email'
+                      required={true}
+                      onBlur={checkEmailTextualValidity}
+                      onChange={checkEmailValidity}
+                      error={!emailValidity.isValid}
                       fullWidth={true}
                       startAdornment={
                         <InputAdornment position="start">
@@ -222,15 +267,23 @@ const SignUp = () : ReactElement => {
                         </InputAdornment>
                       }
                     />
-                  </Grid>
+                    <FormHelperText
+                      error={emailValidity.isValid}
+                      style={{ color: 'red' }}
+                      disabled={emailValidity.isValid}>
+                      {emailValidity.helperText}
+                    </FormHelperText>
+                  </FormControl>
                 </Grid>
                 <Grid className={classes.inputTextFieldContainerdStyle}>
-                  <Grid style={{ width: '100%', backgroundColor: 'transparent' }}>
+                  <FormControl style={{ width: '100%', backgroundColor: 'transparent' }}>
                     <Input
                       className={classes.inputStyle}
                       type={showPassword ? 'text' : 'password'}
                       placeholder='password'
                       fullWidth={true}
+                      required={true}
+                      onChange={checkPassWordValidity}
                       startAdornment={
                         <InputAdornment position="start">
                           <LockOpenIcon className={classes.inputIcon}/>
@@ -249,16 +302,23 @@ const SignUp = () : ReactElement => {
                         </InputAdornment>
                       }
                     />
-                  </Grid>
+                    <FormHelperText
+                      style={{ color: passwordValidity.helperTextcolor }}
+                      disabled={emailValidity.isValid}>
+                      {passwordValidity.helperText}
+                    </FormHelperText>
+                  </FormControl>
                 </Grid>
                 <Grid className={classes.inputTextFieldContainerdStyle}>
-                  <Grid
+                  <FormControl
                     style={{ width: '100%', backgroundColor: 'transparent' }}
                   >
                     <Input
                       className={classes.inputStyle}
                       type='password'
                       placeholder='password'
+                      required={true}
+                      onBlur={checkPassWordConfirmationValidity}
                       fullWidth={true}
                       startAdornment={
                         <InputAdornment position="start">
@@ -266,14 +326,20 @@ const SignUp = () : ReactElement => {
                         </InputAdornment>
                       }
                     />
-                  </Grid>
+                    <FormHelperText
+                      style={{ color: passwordConfirmationValidity.helperTextcolor }}
+                      disabled={passwordConfirmationValidity.isValid}>
+                      {passwordConfirmationValidity.helperText}
+                    </FormHelperText>
+                  </FormControl>
                 </Grid>
               </Grid>
               <Grid className={classes.signupButtonContainerStyle}>
                 <Button
                   className={classes.signupButtonStyle}
-                  // disableFocusRipple={true}
-                  // disableRipple={true}
+                  disabled={!(emailValidity.isValid
+                    && passwordValidity.isValid
+                    && passwordConfirmationValidity.isValid)}
                 >
                   Sign up
                 </Button>
